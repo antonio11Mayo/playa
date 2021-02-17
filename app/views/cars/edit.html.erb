@@ -1,0 +1,11 @@
+Editar carro
+<%= form_for :car, url: car_path(@car), method: :put do |f| %>
+  <%= f.text_field :license_plate, placeholder: 'license_plate' %>
+  <%= f.number_field :model, placeholder: 'model' %>
+  <%= f.text_field :tint, placeholder: 'tint' %>
+  <%= f.submit 'Actualizar carro' %>
+<% end %>
+
+<div>
+  <%=link_to 'Ir a listado de carros', cars_path %>
+</div>

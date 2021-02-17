@@ -1,0 +1,45 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td{
+ padding: 15px;
+}
+</style>
+Listado de Mis carros
+ <table class="default">
+    <tr>
+    <th>ID</th>
+    <th>License Plate</th>
+    <th>Model</th>
+    <th>Tint</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+  </tr>
+  <%- @cars.each do |car| %>
+    <tr>
+      <td>
+        <%= car.id%>
+      </td>
+      <td>
+        <%= car.license_plate %>
+      </td>
+      <td>
+         <%= car.model %>
+      </td>
+      <td>
+         <%= car.tint %>
+      </td>
+      <td>
+         <%=link_to 'Editar', edit_car_path(car) %>
+      </td>
+        <td>
+         <%==link_to 'Eliminar', car_path(car), method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div>
+  <%=link_to 'Ir a nuevo Carro', new_car_path  %>
+</div>

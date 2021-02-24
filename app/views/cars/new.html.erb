@@ -1,8 +1,20 @@
 Nuevo carro
-<%= form_for :car, url: cars_path, method: :post do |f| %>
+<%= form_for @car, url: cars_path, method: :post do |f| %>
   <%= f.text_field :license_plate, placeholder: 'license_plate' %>
+  <%-if f.object.errors[:license_plate].present?%>
+    <%= f.object.errors[:license_plate].join(',') %>
+  <% end%>
+
   <%= f.number_field :model, placeholder: 'model' %>
-  <%= f.text_field :tint, placeholder: 'tint' %>
+  <%-if f.object.errors[:model].present?%>
+    <%= f.object.errors[:model].join(',') %>
+  <% end%>
+
+  <%= f.number_field :tint, placeholder: 'model' %>
+  <%-if f.object.errors[:tint].present?%>
+    <%= f.object.errors[:tint].join(',') %>
+  <% end%>
+
   <%= f.submit 'Guardar carro' %>
 <% end %>
 

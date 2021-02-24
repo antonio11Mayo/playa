@@ -3,16 +3,21 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
-  def new; end
+  def new
+    @car = Car.new
+  end
 
   def create
-    new_car = Car.new(
+    @car = Car.new(
       license_plate: params[:car][:license_plate],
       model: params[:car][:model],
       tint: params[:car][:tint]
     )
-    new_car.save
-    redirect_to cars_path
+    if @car.save
+      redirect_to cars_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -20,11 +25,14 @@ class CarsController < ApplicationController
   end
 
   def update
-    car = Car.find(params[:id])
-    car.update(license_plate: params[:car][:license_plate],
-               model: params[:car][:model],
-               tint: params[:car][:tint])
-    redirect_to cars_path
+    @car = Car.find(params[:id])
+    if @car.update(license_plate: params[:car][:license_plate],
+                   model: params[:car][:model],
+                   tint: params[:car][:tint])
+      redirect_to cars_path
+    else
+      render :edit
+    end
   end
 
   def destroy
